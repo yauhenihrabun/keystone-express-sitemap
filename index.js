@@ -125,7 +125,9 @@ var KeystoneSitemap = function(keystone, req, res) {
 					state: 'published'
 				};
 			}
-			
+			if(list.key === "Vacancy") {
+				filterObject.active = true;
+			}
 			list.model.find(filterObject).exec(function(err, results) {
 				if (results && results.length > 0) {
 					results.forEach(function(v,i) {
