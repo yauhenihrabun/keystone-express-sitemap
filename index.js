@@ -120,14 +120,19 @@ var KeystoneSitemap = function(keystone, req, res) {
 			var idParam = list.options.autokey && list.options.autokey.path ? list.options.autokey.path : '_id';
 
 			var filterObject = {};
-			if(list.key === "Post") {
+			
+			if(['Courses','Vacancies','News'].indexOf(list.key) !== -1) {
 				filterObject = {
 					state: 'published'
 				};
 			}
-			if(list.key === "Vacancy") {
-				filterObject.active = true;
+
+			if(['Solution','Industries'].indexOf(list.key) !== -1) {
+				filterObject = {
+					state: 'active'
+				};
 			}
+
 			list.model.find(filterObject).exec(function(err, results) {
 				if (results && results.length > 0) {
 					results.forEach(function(v,i) {
@@ -174,14 +179,11 @@ var KeystoneSitemap = function(keystone, req, res) {
 		//express 3.x.x does not define req.hostname, only req.host
 		//express 4.x.x has separate parameters for hostname and protocol
 		var host = req.hostname ? req.hostname : req.host;
-		
-		var newMap = Object.assign({}, options.map, map);
-
 		sitemap({
-		    map: newMap,
+		    map: map,
 		    route: route,
 		    url: host,
-		    http: 'https',
+		    http: 'https'
 		}).XMLtoWeb(res);
 	};
 
@@ -197,7 +199,6 @@ var KeystoneSitemap = function(keystone, req, res) {
 		req = rq;
 		res = rs;
 		options = opt;
-		map = {};
 
 		parseRoutes();
 	};
