@@ -117,7 +117,7 @@ var KeystoneSitemap = function(keystone, req, res) {
 
 		if (list != null) {
 			//check what property of the list object is being used as the URL identifier, based on keystone model settings
-			var idParam = list.options.autokey && list.options.autokey.path ? list.options.autokey.path : '_id';
+			var idParam = list.options.autokey && list.options.autokey.path ? list.options.autokey.path : 'link';
 
 			var filterObject = {};
 			
