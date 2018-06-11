@@ -127,7 +127,7 @@ var KeystoneSitemap = function(keystone, req, res) {
 				};
 			}
 
-			if(['Solution','Industries'].indexOf(list.key) !== -1) {
+			if(['Solution','Solution1','Solution2','Solution3','Industries'].indexOf(list.key) !== -1) {
 				filterObject = {
 					state: 'active'
 				};
